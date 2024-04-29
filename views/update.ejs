@@ -1,0 +1,22 @@
+<%- include("partials/header.ejs") %>
+
+<section class="middle">
+    <main class="form-signin w-100 m-auto">
+        <form method="POST" action="/update/<%= index %>">
+            <h1 class="h3 mb-3 fw-normal">Update a blog</h1>
+
+            <div class="form-floating mb-2">
+                <input type="text" name="blogTitle" class="form-control" id="floatingInput" placeholder="Title" value="<%= blogs[index]["title"] %>" />
+                <label for="floatingInput">Title</label>
+            </div>
+            <div class="form-floating mb-2">
+                <input type="text" name="blogDescription" class="form-control" id="floatingPassword" placeholder="Description" value="<%= blogs[index]["description"] %>" />
+                <label for="floatingPassword">Description</label>
+            </div>
+
+            <button class="btn btn-primary w-100 py-2" type="submit">Update</button>
+        </form>
+    </main>
+</section>
+
+<%- include("partials/footer.ejs") %>

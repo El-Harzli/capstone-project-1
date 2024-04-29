@@ -1,0 +1,51 @@
+<%- include("partials/header.ejs") %>
+
+<div class="middle">
+    <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+        <% var x= 0;  %>
+        <% blogs.forEach((blog) => {  %>
+          <tr>
+            <th scope="row"> <%= x %></th>
+            <td><%= blog["title"]  %></td>
+            <td><%= blog["description"]  %></td>
+            <td class="row">
+              <form class="col-6 col-md-3" action="/update" method="POST">
+                <input type="hidden" name="index" value="<%= x %>">
+                <button class="btn btn-warning" type="submit">Update</button>
+              </form>
+              <form class="col-6 col-md-3" action="/delete/<%= x %>" method="POST">
+                <input type="hidden" name="index" value="<%= x %>">
+                <button class="btn btn-danger" type="submit">Delete</button>
+              </form>
+            </td>
+        </tr>
+          
+          <% x++; }) %>
+
+          <% if (typeof data !== 'undefined') { %>
+            <!-- Render 'data' if it exists -->
+            <td><%= data["title"]  %></td>
+            <td><%= data["description"]  %></td>
+            <p>Value of 'data': <%= data %></p>
+        <% } else { %>
+            <!-- Render fallback content if 'data' does not exist -->
+            <p>No data available</p>
+        <% } %>
+
+
+    </tbody>
+  </table>
+</div>
+
+
+
+<%- include("partials/footer.ejs") %>
